@@ -5,7 +5,8 @@
             <h2>{{name}}</h2>
             <div class="profile__item">
                 <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts>
-                <p-stat></p-stat>
+                
+                <p-stat v-for="(c, i) in cnt_l" :key="i" :type="c.type" :data="c.value"></p-stat>
 
             </div>
         </div>
@@ -39,6 +40,11 @@ export default {
                 // {type: "like", value: "10"},
                 // {type: "sub", value: "1000"},
                 // {type: "share", value: "5"},
+            ],
+            cnt_l: [
+                {type: "like", value: "15"},
+                {type: "sub", value: "200"},
+                {type: "shares", value: "5"},
             ]
         }
     }
@@ -56,6 +62,7 @@ export default {
         background: #222;
         color: #fff;
         padding: 30px;
+        
     }
     .profile__about {
         border: #222 solid 1px;
@@ -64,5 +71,10 @@ export default {
     .profile__item {
         display: flex;
         flex-direction: column;
+    }
+    .p-stat{
+        display: flex;
+flex-direction: row;
+margin: 20px;
     }
 </style>
