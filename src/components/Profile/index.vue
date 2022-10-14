@@ -12,6 +12,14 @@
         </div>
         <div class="profile__about">
             <h2>Графический дизайнер</h2>
+<div class="cards">
+    <div class="image"><img src="https://medialeaks.ru/wp-content/uploads/2020/08/annotacziya-2020-08-04-161956.jpg" alt="" width="128"></div>
+    <div class="image"><img src="https://tikstar-user-images.oss-cn-hongkong.aliyuncs.com/352a_6788528703342920710.jpg" alt="" width="128"></div>
+    <div class="image"><img src="https://static.wikia.nocookie.net/mlp/images/a/a4/Map_of_Equestria_2015.jpg" alt="" width="128"></div>
+</div>
+<div class="posts">
+    <pcard v-for="(c, i) in posts" :key="i" :type="c.type" :data="c.value"></pcard>
+</div>
         </div>
     </div>
 </template>
@@ -20,13 +28,15 @@
 import Picture from "@/components/Profile/Picture";
 import Contacts from "@/components/Profile/Contacts";
 import Stats from "@/components/Profile/Stats";
+import Card from "@/components/Card"
 
 export default {
     name: "usr-profile",
     components: {
         "profile-picture": Picture,
         "profile-contacts": Contacts,
-        "p-stat": Stats
+        "p-stat": Stats,
+        "pcard": Card
     },
     data() {
         return {
@@ -45,6 +55,12 @@ export default {
                 {type: "like", value: "15"},
                 {type: "sub", value: "200"},
                 {type: "shares", value: "5"},
+            ],
+            posts: [
+                {type: "post1", value: "Мне дали сертификат дизайнера"},
+                {type: "post2", value: "Мне кажется, что дизайн сайта очень изменился по сравнению с дизайном сайта 2012 года"},
+                {type: "post3", value: "ничего страшного, это был сон про мою молодость в 2012 году"},
+
             ]
         }
     }
@@ -76,5 +92,11 @@ export default {
         display: flex;
 flex-direction: row;
 margin: 20px;
+    }
+    .cards{
+        display: flex;
+        flex-direction: row;
+        padding: 15px;
+        border: 2px solid;
     }
 </style>
