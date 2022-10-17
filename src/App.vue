@@ -29,12 +29,19 @@
 <template>
     <header>
         <h1>Design-core</h1>
-        <button v-on:click="modalOpen">Sign Up / Sign In</button>
+        <button v-on:click="modalOpen" class="login">Sign In</button>
     </header>    <usr-profile></usr-profile>
     <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
         
         <div class="modal">
-            (*o*)
+            <form>
+                <label>E-mail</label>
+                <input type="email" name="email" id="inp_email">
+                <br>
+                <label>Пароль</label>
+                <input type="password" name="pwd" id="inp_pwd">
+                <br>
+            </form>
             <div class="modal-close"><button v-on:click="modalClose">x</button></div>
         </div>
     </div>
@@ -75,9 +82,14 @@
     }
 </script>
 <style>
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+}
     h1 {
-        color: red;
+        color: green;
     }
+
     .cards {
         display: grid;
         grid-template-columns: repeat(4, 120px);
@@ -107,5 +119,23 @@
         line-height: 1;
         transform: rotate(45deg);
         cursor: pointer;;
+    }
+    header{
+        padding-left: 32pt;
+        padding-right: 32pt;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: aqua;
+    }
+    .login{
+        background-color: azure;
+        border: 0.5px solid;
+        width: 96px;
+        height: 32px;
+        font-size: 16pt;
+        border-radius: 8px;
+
     }
 </style>
