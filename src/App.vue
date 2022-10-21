@@ -29,8 +29,12 @@
 <template>
     <header>
         <h1>Design-core</h1>
-        <button v-on:click="modalOpen" class="login">Sign In</button>
-    </header>    <usr-profile></usr-profile>
+        <button v-on:click="modalOpen" class="login">Sign In</button> 
+    <router-link to="/">Home</router-link>
+    <router-link to="/profile">Profile</router-link>
+    </header>  
+
+        <router-view></router-view>
     <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
         
         <div class="modal">
@@ -48,13 +52,15 @@
 </template>
 
 <script>
-    // import Card from "./components/Card/index.vue";
-    import Profile from "@/components/Profile";
+    // import Card from "./components/Card";
+
+
     export default {
         name: "App",
         components: {
             // "my-card": Card,
-            "usr-profile": Profile
+            // "usr-profile": Profile,
+            // "m-page": MainPage
         },
         data() {
             return {
@@ -67,6 +73,9 @@
                     "Friday",
                     "Saturday",
                     "Sunday",
+                ],
+                router: [
+
                 ],
                 modalActivity: false
             }
