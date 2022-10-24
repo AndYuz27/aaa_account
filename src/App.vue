@@ -38,7 +38,7 @@
     </header>  
 
         <router-view></router-view>
-    <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
+    <!-- <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
         
         <div class="modal">
             <form>
@@ -51,7 +51,8 @@
             </form>
             <div class="modal-close"><button v-on:click="modalClose">x</button></div>
         </div>
-    </div>
+    </div> -->
+
 </template>
 
 <script>
