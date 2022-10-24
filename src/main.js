@@ -8,12 +8,18 @@ import {fas} from "@fortawesome/free-solid-svg-icons";
 
 import Profile from "@/components/Profile/index.vue";
 import MainPage from "@/components/MainPage/index.vue";
+// import Register from "@/components/Register/index.vue";
+import Auth from "@/components/Auth/index.vue";
+import ForgotPassword from "@/components/ForgotPassword/index.vue";
 
 const routes = [
     {path: "/", component: MainPage},
     {path: "/profile", component: Profile},
+    {path: "/auth", component: Auth, props: {type: "login"}},
+    {path: "/signup", component: Auth, props: {type: "signup"}},
+    {path: "/change-pwd", component: Auth, props: {type: "pwd"}},
 ]
-
+//    
 const router = createRouter({history: createWebHistory() ,routes})
 import App from './App.vue'
 

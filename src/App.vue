@@ -29,7 +29,10 @@
 <template>
     <header>
         <h1>Design-core</h1>
-        <button v-on:click="modalOpen" class="login">Sign In</button> 
+        <!-- <button v-on:click="modalOpen" class="login">Sign In</button>  -->
+        <!-- <router-link to="/reg">Зарегистрироваться</router-link> -->
+        <router-link to="/auth">LogIn</router-link>
+        <!-- <router-link to="/forgot-pass"></router-link> -->
     <router-link to="/">Home</router-link>
     <router-link to="/profile">Profile</router-link>
     </header>  
