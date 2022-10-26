@@ -28,7 +28,7 @@
 
 <template>
     <header>
-        <h1>Design-core</h1>
+        <h1>Game-lib</h1>
         <!-- <button v-on:click="modalOpen" class="login">Sign In</button>  -->
         <!-- <router-link to="/reg">Зарегистрироваться</router-link> -->
         <router-link to="/auth">LogIn</router-link>
@@ -100,7 +100,7 @@ body{
     margin: 0;
 }
     h1 {
-        color: green;
+        color: red;
     }
 
     .cards {
@@ -150,5 +150,9 @@ body{
         font-size: 16pt;
         border-radius: 8px;
 
+    }
+    a{
+        text-decoration: none;
+        
     }
 </style>

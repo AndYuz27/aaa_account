@@ -2,7 +2,7 @@
     <div class="mainpage">
         <h2>{{dd}}</h2>
         <h5>{{tgaaa}}</h5>
-        <img src="https://www.artranked.com/images/74/74530e4354338f1ff8419be8c0843478.jpg" alt="paintbrush" width="500">
+        <img src="https://www.pngall.com/wp-content/uploads/6/Vector-Joystick-PNG-File.png" alt="paintbrush" width="500">
         <div class="pg1">
             <h3>About Site</h3>
             <p>{{lrm}}</p> 
