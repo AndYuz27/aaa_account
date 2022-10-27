@@ -18,7 +18,7 @@
     <div class="image"><img src="https://static.wikia.nocookie.net/mlp/images/a/a4/Map_of_Equestria_2015.jpg" alt="" width="128"></div>
 </div>
 <div class="posts">
-    <pcard v-for="(c, i) in posts" :key="i" :type="c.type" :data="c.value"></pcard>
+    <h2 v-for="(post, index) in posts" :key="post">{{index}} {{post}}</h2>
 </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
 import Picture from "@/components/Profile/Picture";
 import Contacts from "@/components/Profile/Contacts";
 import Stats from "@/components/Profile/Stats";
-import Card from "@/components/Card"
+import Card from "@/components/Profile/Card.vue"
 
 export default {
     name: "usr-profile",
@@ -56,10 +56,10 @@ export default {
                 {type: "sub", value: "200"},
                 {type: "shares", value: "5"},
             ],
-            posts: [
-                {type: "post1", value: "Мне дали сертификат дизайнера"},
-                {type: "post2", value: "Мне кажется, что дизайн сайта очень изменился по сравнению с дизайном сайта 2012 года"},
-                {type: "post3", value: "ничего страшного, это был сон про мою молодость в 2012 году"},
+                posts: [
+                'Мне дали сертификат дизайнера',
+                'Мне кажется, что дизайн сайта очень изменился по сравнению с дизайном сайта 2012 года',
+                'ничего страшного, это был сон про мою молодость в 2012 году',
 
             ]
         }
