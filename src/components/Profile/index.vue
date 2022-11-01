@@ -63,8 +63,14 @@ export default {
 
             ]
         }
+    },
+    getUser() {
+        const user = JSON.parse(localStorage.getItem("db") || "[]");
+        console.log(user)
+
     }
-}
+    }
+
 </script>
 
 <style scoped>

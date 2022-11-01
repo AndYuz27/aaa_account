@@ -18,6 +18,9 @@
 
 export default {
     name: "m-page",
+    created() {
+
+    },
 //     data: {
 //     images: [
 //       'http://via.placeholder.com/350x150',

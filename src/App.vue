@@ -17,41 +17,18 @@
 
 -->
 
-<!--<template>-->
-<!--    <h1>{{title}}</h1>-->
-<!--    <div class="cards">-->
-<!--        <my-card v-for="d in days" v-bind:text="d" v-bind:key="d"></my-card>-->
-<!--    </div>-->
-<!--</template>-->
-<!--  -->
-
 
 <template>
     <header>
         <h1>Game-lib</h1>
-        <!-- <button v-on:click="modalOpen" class="login">Sign In</button>  -->
-        <!-- <router-link to="/reg">Зарегистрироваться</router-link> -->
-        <router-link to="/auth">LogIn</router-link>
-        <!-- <router-link to="/forgot-pass"></router-link> -->
+       
     <router-link to="/">Home</router-link>
-    <router-link to="/profile">Profile</router-link>
-    </header>  
-
+    <router-link v-if="user" to="/profile"> Profile </router-link>    <router-link to="/test">test</router-link>
+    <router-link v-if="!user" to="/auth"> Auth </router-link>
+    <button v-if="user" @click="logout">Log Out</button>
+</header>
         <router-view></router-view>
-    <!-- <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
-        
-        <div class="modal">
-            <form>
-                <label>E-mail</label>
-                <input type="email" name="email" id="inp_email">
-                <br>
-                <label>Пароль</label>
-                <input type="password" name="pwd" id="inp_pwd">
-                <br>
-            </form>
-            <div class="modal-close"><button v-on:click="modalClose">x</button></div>
-        </div>
-    </div> -->
+
 
 </template>
 
@@ -61,6 +38,7 @@
 
     export default {
         name: "App",
+        
         components: {
             // "my-card": Card,
             // "usr-profile": Profile,
@@ -81,7 +59,8 @@
                 router: [
 
                 ],
-                modalActivity: false
+                modalActivity: false,
+                user: localStorage.getItem("user")
             }
         },
         methods: {
@@ -90,9 +69,13 @@
             },
             modalClose(){
                 this.modalActivity = false;
+            },
+            logout(){
+                localStorage.removeItem("user");
+                localStorage.removeItem("name");
             }
         }
-    }
+      }
 </script>
 <style>
 body{
