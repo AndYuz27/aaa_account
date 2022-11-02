@@ -40,11 +40,11 @@ export default {
     },
     data() {
         return {
-            name: "Петр Жуков",
+            name: localStorage.getItem("name"),
             // contacts: ["+7(123)456-78-90", "lexysnake@gmail.com", "ds:@lekso4ka", "tg:@lekso4ka"]
             contacts: [
                 {type: "phone", value: "+7(123)133-73-33"},
-                {type: "email", value: "petya_juke@gmail.com"},
+                {type: "email", value: "petya_juke@gmail.com" /*localStorage.getItem("email")*/},
                 {type: "tg", value: "@petyorka_juke"},
                 {type: "vk", value: "https://vk.com/455465664"},
                 // {type: "like", value: "10"},
@@ -63,11 +63,6 @@ export default {
 
             ]
         }
-    },
-    getUser() {
-        const user = JSON.parse(localStorage.getItem("db") || "[]");
-        console.log(user)
-
     }
     }
 

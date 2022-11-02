@@ -20,7 +20,7 @@
 
 <template>
     <header>
-        <h1>Game-lib</h1>
+        <h1>Design-Core</h1>
        
     <router-link to="/">Home</router-link>
     <router-link v-if="user" to="/profile"> Profile </router-link>    <router-link to="/test">test</router-link>
@@ -73,6 +73,7 @@
             logout(){
                 localStorage.removeItem("user");
                 localStorage.removeItem("name");
+                this.$router.replace("/")
             }
         }
       }
