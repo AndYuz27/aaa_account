@@ -2,24 +2,29 @@
     <div class="profile">
         <div class="profile__contacts">
             <profile-picture></profile-picture>
-            <h2>{{name}}</h2>
+            <h2>{{userData.name}}</h2>
             <div class="profile__item">
                 <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts>
-                
-                <p-stat v-for="(c, i) in cnt_l" :key="i" :type="c.type" :data="c.value"></p-stat>
-
             </div>
         </div>
         <div class="profile__about">
-            <h2>Графический дизайнер</h2>
-<div class="cards">
-    <div class="image"><img src="https://medialeaks.ru/wp-content/uploads/2020/08/annotacziya-2020-08-04-161956.jpg" alt="" width="128"></div>
-    <div class="image"><img src="https://tikstar-user-images.oss-cn-hongkong.aliyuncs.com/352a_6788528703342920710.jpg" alt="" width="128"></div>
-    <div class="image"><img src="https://static.wikia.nocookie.net/mlp/images/a/a4/Map_of_Equestria_2015.jpg" alt="" width="128"></div>
-</div>
-<div class="posts">
-    <h2 v-for="(post, index) in posts" :key="post">{{index}} {{post}}</h2>
-</div>
+            <h2>{{userData.description}}</h2>
+            <div>
+                Возраст:
+                <button @click="dec">-</button>
+                {{age}}
+                <button @click="inc">+</button>
+            </div>
+            <div class="portfolio">
+                <div class="profile__item" v-for="item of projects" :key="item._id">
+                    <h2>{{item.title}}</h2>
+                    <button @click="removeProject(item._id)">Remove</button>
+                    <div class="portfolio__image" :style="{backgroundImage: `url(${item.main_image})`}"></div>
+<!--                    <p v-show="item.description">{{item.description}}</p>-->
+                    <a :href="item.link" target="_blank" v-show="item.link"></a>
+                </div>
+                <div class="portfolio__btn" @click="addProject">Add project</div>
+            </div>
         </div>
     </div>
 </template>
@@ -27,45 +32,60 @@
 <script>
 import Picture from "@/components/Profile/Picture";
 import Contacts from "@/components/Profile/Contacts";
-import Stats from "@/components/Profile/Stats";
-import Card from "@/components/Profile/Card.vue"
 
 export default {
     name: "usr-profile",
     components: {
         "profile-picture": Picture,
-        "profile-contacts": Contacts,
-        "p-stat": Stats,
-        "pcard": Card
+        "profile-contacts": Contacts
     },
+    props: ["userData"],
     data() {
         return {
-            name: localStorage.getItem("name"),
+            name: "Антон Иванов",
             // contacts: ["+7(123)456-78-90", "lexysnake@gmail.com", "ds:@lekso4ka", "tg:@lekso4ka"]
             contacts: [
-                {type: "phone", value: "+7(123)133-73-33"},
-                {type: "email", value: "petya_juke@gmail.com" /*localStorage.getItem("email")*/},
-                {type: "tg", value: "@petyorka_juke"},
-                {type: "vk", value: "https://vk.com/455465664"},
-                // {type: "like", value: "10"},
-                // {type: "sub", value: "1000"},
-                // {type: "share", value: "5"},
+                {type: "phone", value: "+7(123)456-78-90"},
+                {type: "email", value: "antoshka@ivanov.son"},
+                {type: "tg", value: "@antoshka"},
+                {type: "vk", value: "https://vk.com/1234567890"}
             ],
-            cnt_l: [
-                {type: "like", value: "15"},
-                {type: "sub", value: "200"},
-                {type: "shares", value: "5"},
-            ],
-                posts: [
-                'Мне дали сертификат дизайнера',
-                'Мне кажется, что дизайн сайта очень изменился по сравнению с дизайном сайта 2012 года',
-                'ничего страшного, это был сон про мою молодость в 2012 году',
+            age: 20,
+            projects: this.userData.portfolio || []
+        }
+    },
+    methods: {
+        inc() {
+            this.age++;
+        },
+        dec() {
+            this.age > 0 && this.age--
+        },
+        addProject() {
+            this.$emit("showPopup");
+        },
+        removeProject(id){
+            console.log(id, this.userData._id)
 
-            ]
+            fetch(`https://dream-design-server.herokuapp.com/api/users/project/remove/${this.userData._id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                        "Accept": "application/json"
+                },
+                body: JSON.stringify({"_id": id})
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("result", data);
+                if(data.message === "ok"){
+                    localStorage.setItem("user", JSON.stringify(data.data))
+                    this.projects = this.projects.filter(p => p._id !== id)
+                }
+            })
         }
     }
-    }
-
+}
 </script>
 
 <style scoped>
@@ -79,7 +99,6 @@ export default {
         background: #222;
         color: #fff;
         padding: 30px;
-        
     }
     .profile__about {
         border: #222 solid 1px;
@@ -89,15 +108,27 @@ export default {
         display: flex;
         flex-direction: column;
     }
-    .p-stat{
-        display: flex;
-flex-direction: row;
-margin: 20px;
+    .portfolio {
+        padding: 30px 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
     }
-    .cards{
+    .portfolio__item {
+        padding: 30px;
+    }
+    .portfolio__btn {
+        border: 1px solid;
         display: flex;
-        flex-direction: row;
-        padding: 15px;
-        border: 2px solid;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .portfolio__image{
+        height: 100px;
+        width: 100px;
+        background-size: cover;
     }
 </style>

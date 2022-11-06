@@ -17,7 +17,20 @@
 
 -->
 
+<!--<template>-->
+<!--    <h1>{{title}}</h1>-->
+<!--    <div class="cards">-->
+<!--        <my-card v-for="d in days" v-bind:text="d" v-bind:key="d"></my-card>-->
+<!--    </div>-->
+<!--</template>-->
 
+
+
+<!--
+    TODO: Используя localStorage, переписать шапку так, чтобы при наличии пользователя не было кнопок входа, а при отсутствии пользователя не было ссылки на личный кабинет.
+    TODO: На странице пользователя (можно в шапке), добавить кнопку "выйти" - очистить localStorage.
+    TODO: Отображать в личном кабинете данные авторизованного пользователя
+-->
 <template>
     <header>
         <h1>Design-Core</h1>
@@ -27,22 +40,25 @@
     <router-link v-if="!user" to="/auth"> Auth </router-link>
     <button v-if="user" @click="logout">Log Out</button>
 </header>
-        <router-view></router-view>
-
-
+    <main-container @showPopup="modalOpen" :userData="userData"></main-container>
+    <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
+<!--        <div class="modal">-->
+<!--            ^_^-->
+<!--            <div class="modal-close" @click="modalClose">+</div>-->
+<!--        </div>-->
+        <ModalForm @modalClose="modalClose"  @updateData="updateUserData"/>
+    </div>
 </template>
 
 <script>
-    // import Card from "./components/Card";
-
-
+    // import Card from "./components/Card/index.vue";
+    import ModalForm from "@/components/ModalForm";
+    import MainContainer from "@/components/Main";
     export default {
         name: "App",
-        
         components: {
-            // "my-card": Card,
-            // "usr-profile": Profile,
-            // "m-page": MainPage
+            MainContainer,
+            ModalForm
         },
         data() {
             return {
@@ -56,27 +72,37 @@
                     "Saturday",
                     "Sunday",
                 ],
-                router: [
-
-                ],
                 modalActivity: false,
-                user: localStorage.getItem("user")
+                user: localStorage.getItem("user"),
+                userData: {
+
+                }
             }
         },
         methods: {
-            modalOpen(){
+            modalOpen() {
                 this.modalActivity = true;
             },
-            modalClose(){
+            modalClose() {
                 this.modalActivity = false;
+            },
+            updateUserData(data) {
+            this.userData = data;
+            console.log("global user", this.userData);
             },
             logout(){
                 localStorage.removeItem("user");
                 localStorage.removeItem("name");
                 this.$router.replace("/")
             }
+            },
+            created(){
+                let user = localStorage.getItem("user");
+                if(user){
+                    this.userData = JSON.parse(user)
+                }
         }
-      }
+    }
 </script>
 <style>
 body{

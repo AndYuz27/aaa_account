@@ -64,12 +64,7 @@ export default {
             if (data.message === "ok") {
                 e.target.reset();
                 localStorage.setItem("user", JSON.stringify(data.data));
-                localStorage.setItem("name", JSON.stringify(data.data.name));
-                localStorage.setItem("", JSON.stringify(data.data.email));
-                
-
-                console.log(data)
-                this.$router.replace("/profile")
+                this.$router.replace("/profile");
             } else {
                 alert(data.message);
             }
@@ -94,10 +89,7 @@ export default {
                 if (data.message === "ok") {
                     e.target.reset();
                     localStorage.setItem("user", JSON.stringify(data.data));
-                    localStorage.setItem("name", JSON.stringify(data.data.name));
-                    localStorage.setItem("", JSON.stringify(data.data.email));
-
-                    this.$router.replace("/profile")
+                    this.$router.replace("/profile");
                 } else {
                     alert(data.message);
                 }
@@ -114,18 +106,6 @@ export default {
 </script>
 
 <style scoped>
-*{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.authBox{
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 500px;
-}
     .wrong {
         border-color: red;
     }
