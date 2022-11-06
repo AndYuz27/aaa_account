@@ -94,6 +94,8 @@
                 localStorage.removeItem("user");
                 localStorage.removeItem("name");
                 this.$router.replace("/")
+                window.location.reload();
+
             }
             },
             created(){
@@ -160,9 +162,13 @@ body{
         font-size: 16pt;
         border-radius: 8px;
 
+
     }
-    a{
+    a {
+        color: #ffffff;
         text-decoration: none;
-        
+    }
+    a:hover {
+        color: blanchedalmond;
     }
 </style>

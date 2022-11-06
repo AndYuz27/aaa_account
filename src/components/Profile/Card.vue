@@ -1,10 +1,10 @@
 <template>
-
+<div>
         <!-- <button class="btn_n" @click="incr"><font-awesome-icon icon="fa-solid fa-heart" /> </button><p>{{ cnt1 }}</p>
         <button class="btn_n" @click="incr2"><font-awesome-icon icon="fa-solid fa-user" /> </button><p>{{ cnt2 }}</p>
         <button class="btn_n" @click="incr3"><font-awesome-icon icon="fa-solid fa-share-from-square" /> </button><p>{{ cnt3 }}</p> -->
 
-
+</div>
  
 
 </template>

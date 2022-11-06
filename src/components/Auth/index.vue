@@ -64,7 +64,10 @@ export default {
             if (data.message === "ok") {
                 e.target.reset();
                 localStorage.setItem("user", JSON.stringify(data.data));
+                
                 this.$router.replace("/profile");
+                this.$forceUpdate();
+
             } else {
                 alert(data.message);
             }
@@ -89,7 +92,9 @@ export default {
                 if (data.message === "ok") {
                     e.target.reset();
                     localStorage.setItem("user", JSON.stringify(data.data));
+                    
                     this.$router.replace("/profile");
+                    this.$forceUpdate();
                 } else {
                     alert(data.message);
                 }

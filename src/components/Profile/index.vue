@@ -4,7 +4,16 @@
             <profile-picture></profile-picture>
             <h2>{{userData.name}}</h2>
             <div class="profile__item">
-                <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts>
+                <!-- <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts> -->
+                <a href="">{{userData.email}}</a>
+
+            </div>
+            <div class="stats">
+        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-heart" /> 2</a>
+        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-user" /> 2</a>
+        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-user" /> 2</a>
+        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-share-from-square" /> 2</a>
+
             </div>
         </div>
         <div class="profile__about">
@@ -16,14 +25,20 @@
                 <button @click="inc">+</button>
             </div>
             <div class="portfolio">
-                <div class="profile__item" v-for="item of projects" :key="item._id">
-                    <h2>{{item.title}}</h2>
-                    <button @click="removeProject(item._id)">Remove</button>
-                    <div class="portfolio__image" :style="{backgroundImage: `url(${item.main_image})`}"></div>
-<!--                    <p v-show="item.description">{{item.description}}</p>-->
-                    <a :href="item.link" target="_blank" v-show="item.link"></a>
-                </div>
+                <div class="ddff">
                 <div class="portfolio__btn" @click="addProject">Add project</div>
+                <div class="card1">
+                    <div class="profile__item" v-for="item of projects" :key="item._id">
+                    <h2>{{item.title}}</h2>
+                    
+                    <div class="portfolio__image" :style="{backgroundImage: `url(${item.main_image})`}"></div>
+                    <button @click="removeProject(item._id)">Remove</button>
+<!--                    <p v-show="item.description">{{item.description}}</p>-->
+                    <a :href="item.link" target="_blank" v-show="item.link">ссылка на АРТ</a>
+                    <p>{{item.description}}</p>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -93,7 +108,7 @@ export default {
         display: grid;
         grid-template-columns: 30% 1fr;
         width: 1200px;
-        margin: auto;
+        /* margin: auto; */
     }
     .profile__contacts {
         background: #222;
@@ -127,8 +142,18 @@ export default {
         padding: 10px;
     }
     .portfolio__image{
-        height: 100px;
-        width: 100px;
+        height: 243px;
+        width: 243px;
         background-size: cover;
     }
+    .card1{
+        background-color: rgb(251, 100, 50);
+        margin-bottom: 15px
+    }
+    font-awesome-icon{
+    color: white
+}
+.stat_btn{
+    padding-right: 2vh;
+}
 </style>

@@ -1,6 +1,11 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {fas} from "@fortawesome/free-solid-svg-icons";
+
+
 import Profile from "@/components/Profile";
 import Home from "@/components/Home";
 import Auth from "@/components/Auth";
@@ -22,5 +27,8 @@ const router = createRouter({
 
 import App from "./App.vue";
 
+library.add(fas)
 
-createApp(App).use(router).mount("#app");
+createApp(App).use(router)
+    .component('font-awesome-icon', FontAwesomeIcon)
+    .mount('#app')
