@@ -2,10 +2,10 @@
     <div class="profile">
         <div class="profile__contacts">
             <profile-picture></profile-picture>
-            <h2>{{userData.name}}</h2>
+            <h2>{{userData.name || "Где имя!?"}}</h2>
             <div class="profile__item">
                 <!-- <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts> -->
-                <a href="">{{userData.email}}</a>
+                <a href="">{{userData.email || "Email отсутствует"}}</a>
 
             </div>
             <div class="stats">
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="profile__about">
-            <h2>{{userData.description}}</h2>
+            <h2>{{userData.description || "Description isn't found ((("}}</h2>
             <div>
                 Возраст:
                 <button @click="dec">-</button>
@@ -27,6 +27,7 @@
             <div class="portfolio">
                 <div class="ddff">
                 <div class="portfolio__btn" @click="addProject">Add project</div>
+                <div class="prt_grid">
                 <div class="card1">
                     <div class="profile__item" v-for="item of projects" :key="item._id">
                     <h2>{{item.title}}</h2>
@@ -35,7 +36,9 @@
                     <button @click="removeProject(item._id)">Remove</button>
 <!--                    <p v-show="item.description">{{item.description}}</p>-->
                     <a :href="item.link" target="_blank" v-show="item.link">ссылка на АРТ</a>
-                    <p>{{item.description}}</p>
+                    <p>Description: {{item.description || "..."}}</p>
+                    <p>Likes: {{item.likes.length || "There is no likes"}}</p>
+                    </div>
                     </div>
                     </div>
                 </div>
@@ -57,14 +60,14 @@ export default {
     props: ["userData"],
     data() {
         return {
-            name: "Антон Иванов",
+            name: "Lorem Ispum",
             // contacts: ["+7(123)456-78-90", "lexysnake@gmail.com", "ds:@lekso4ka", "tg:@lekso4ka"]
-            contacts: [
-                {type: "phone", value: "+7(123)456-78-90"},
-                {type: "email", value: "antoshka@ivanov.son"},
-                {type: "tg", value: "@antoshka"},
-                {type: "vk", value: "https://vk.com/1234567890"}
-            ],
+            // contacts: [
+            //     {type: "phone", value: "+7(123)456-78-90"},
+            //     {type: "email", value: "antoshka@ivanov.son"},
+            //     {type: "tg", value: "@antoshka"},
+            //     {type: "vk", value: "https://vk.com/1234567890"}
+            // ],
             age: 20,
             projects: this.userData.portfolio || []
         }
@@ -122,6 +125,7 @@ export default {
     .profile__item {
         display: flex;
         flex-direction: column;
+        margin-right: 5px;
     }
     .portfolio {
         padding: 30px 0;
@@ -131,6 +135,7 @@ export default {
     }
     .portfolio__item {
         padding: 30px;
+        
     }
     .portfolio__btn {
         border: 1px solid;
@@ -147,13 +152,21 @@ export default {
         background-size: cover;
     }
     .card1{
-        background-color: rgb(251, 100, 50);
-        margin-bottom: 15px
+        padding: 30px 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
     }
     font-awesome-icon{
     color: white
 }
 .stat_btn{
     padding-right: 2vh;
+}
+.prt_grid{
+    padding: 30px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
 }
 </style>
