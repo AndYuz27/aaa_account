@@ -1,6 +1,6 @@
 <template>
     <div class="profile">
-        <div class="profile__contacts">
+        <div v-if="user" class="profile__contacts" >
             <profile-picture></profile-picture>
             <h2>{{userData.name || "Где имя!?"}}</h2>
             <div class="profile__item">
@@ -16,9 +16,9 @@
 
             </div>
         </div>
-        <div class="profile__about">
-            <h2>{{userData.description || "Description isn't found ((("}}</h2>
-            <div>
+        <div class="profile__about">    
+            <h2 v-if="user">{{userData.description || "Description isn't found ((("}}</h2>
+            <div v-if="user">
                 Возраст:
                 <button @click="dec">-</button>
                 {{age}}
@@ -26,7 +26,7 @@
             </div>
             <div class="portfolio">
                 <div class="ddff">
-                <div class="portfolio__btn" @click="addProject">Add project</div>
+                <div v-if="user" class="portfolio__btn" @click="addProject">Add project</div>
                 <div class="prt_grid">
                 <div class="card1">
                     <div class="profile__item" v-for="item of projects" :key="item._id">
@@ -41,6 +41,8 @@
                     </div>
                     </div>
                     </div>
+                </div>
+                <div v-if="!user" class="NoValidUser">Вы не вошли в систему. Пожалуйста      <router-link v-if="!user" to="/auth">войдите под вашим именем.</router-link>
                 </div>
             </div>
         </div>
@@ -69,7 +71,8 @@ export default {
             //     {type: "vk", value: "https://vk.com/1234567890"}
             // ],
             age: 20,
-            projects: this.userData.portfolio || []
+            projects: this.userData.portfolio || [],
+            user: localStorage.getItem("user"),
         }
     },
     methods: {
@@ -101,6 +104,9 @@ export default {
                     this.projects = this.projects.filter(p => p._id !== id)
                 }
             })
+        },
+        getLike(){
+            
         }
     }
 }
@@ -168,5 +174,12 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+a:hover {
+    color: blanchedalmond;
 }
 </style>

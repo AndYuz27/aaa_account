@@ -34,11 +34,13 @@
 <template>
     <header>
         <h1>Design-Core</h1>
-       
-    <router-link to="/">Home</router-link>
-    <router-link v-if="user" to="/profile"> Profile </router-link>    <router-link to="/test">test</router-link>
+       <nav>
+    <router-link v-if="!user" to="/">Home</router-link>
+    <router-link v-if="user" to="/profile"> Profile </router-link>   
+    <router-link v-if="user" to="/test">Users</router-link>
     <router-link v-if="!user" to="/auth"> Auth </router-link>
     <button v-if="user" @click="logout">Log Out</button>
+    </nav>
 </header>
     <main-container @showPopup="modalOpen" :userData="userData"></main-container>
     <div class="modal-wrapper" :style="{display: modalActivity ? 'flex' : 'none'}">
@@ -93,8 +95,8 @@
             logout(){
                 localStorage.removeItem("user");
                 localStorage.removeItem("name");
+
                 this.$router.replace("/")
-                window.location.reload();
 
             }
             },
@@ -164,11 +166,5 @@ body{
 
 
     }
-    a {
-        color: #ffffff;
-        text-decoration: none;
-    }
-    a:hover {
-        color: blanchedalmond;
-    }
+
 </style>
