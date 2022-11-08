@@ -4,40 +4,35 @@
             <profile-picture></profile-picture>
             <h2>{{userData.name || "Где имя!?"}}</h2>
             <div class="profile__item">
-                <!-- <profile-contacts v-for="(c, i) in contacts" :key="i" :type="c.type" :data="c.value"></profile-contacts> -->
                 <a href="">{{userData.email || "Email отсутствует"}}</a>
 
             </div>
             <div class="stats">
-        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-heart" /> 2</a>
-        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-user" /> 2</a>
-        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-user" /> 2</a>
-        <a href="#" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-share-from-square" /> 2</a>
+                <button @click="inc2" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-heart" /> {{likes}}</button>
+                <button @click="inc1" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-user" /> {{sub}}</button>
+                    <button @click="inc3" class="stat_btn"> <font-awesome-icon icon="fa-solid fa-share-from-square" /> {{shared}}</button>
 
             </div>
         </div>
         <div class="profile__about">    
-            <h2 v-if="user">{{userData.description || "Description isn't found ((("}}</h2>
+            <h2 v-if="user">{{userData.description || "Описании не найдено ((("}}</h2>
             <div v-if="user">
-                Возраст:
-                <button @click="dec">-</button>
-                {{age}}
-                <button @click="inc">+</button>
+
             </div>
             <div class="portfolio">
                 <div class="ddff">
-                <div v-if="user" class="portfolio__btn" @click="addProject">Add project</div>
+                <div v-if="user" class="portfolio__btn" @click="addProject">Добавить</div>
                 <div class="prt_grid">
                 <div class="card1">
                     <div class="profile__item" v-for="item of projects" :key="item._id">
-                    <h2>{{item.title}}</h2>
+                    <h2>{{item.title || "Название отсутствует"}}</h2>
                     
                     <div class="portfolio__image" :style="{backgroundImage: `url(${item.main_image})`}"></div>
-                    <button @click="removeProject(item._id)">Remove</button>
-<!--                    <p v-show="item.description">{{item.description}}</p>-->
+                    <button class="btn_del" @click="removeProject(item._id)">Удалить</button>
                     <a :href="item.link" target="_blank" v-show="item.link">ссылка на АРТ</a>
-                    <p>Description: {{item.description || "..."}}</p>
-                    <p>Likes: {{item.likes.length || "There is no likes"}}</p>
+                    <p>Описание: {{item.description || "Пользователь не оставил описания ((("}}</p>
+                    <p>Дата: {{item.date || "Даты нету ((("}}</p>
+                    <!-- <p>Likes: {{item.likes.length || "There is no likes"}}</p> -->
                     </div>
                     </div>
                     </div>
@@ -63,14 +58,10 @@ export default {
     data() {
         return {
             name: "Lorem Ispum",
-            // contacts: ["+7(123)456-78-90", "lexysnake@gmail.com", "ds:@lekso4ka", "tg:@lekso4ka"]
-            // contacts: [
-            //     {type: "phone", value: "+7(123)456-78-90"},
-            //     {type: "email", value: "antoshka@ivanov.son"},
-            //     {type: "tg", value: "@antoshka"},
-            //     {type: "vk", value: "https://vk.com/1234567890"}
-            // ],
             age: 20,
+            sub: 35,
+            likes: 25,
+            shared: 35,
             projects: this.userData.portfolio || [],
             user: localStorage.getItem("user"),
         }
@@ -79,11 +70,29 @@ export default {
         inc() {
             this.age++;
         },
+        inc1() {
+            this.sub++;
+        },
         dec() {
             this.age > 0 && this.age--
         },
+        dec1() {
+            this.sub > 0 && this.sub--
+        },
         addProject() {
             this.$emit("showPopup");
+        },
+        inc2() {
+            this.likes++;
+        },
+        dec2() {
+            this.likes > 0 && this.likes--
+        },
+        inc3() {
+            this.shared++;
+        },
+        dec3() {
+            this.shared > 0 && this.shared--
         },
         removeProject(id){
             console.log(id, this.userData._id)
@@ -104,6 +113,7 @@ export default {
                     this.projects = this.projects.filter(p => p._id !== id)
                 }
             })
+            alert("Проект удален")
         },
         getLike(){
             
@@ -117,7 +127,6 @@ export default {
         display: grid;
         grid-template-columns: 30% 1fr;
         width: 1200px;
-        /* margin: auto; */
     }
     .profile__contacts {
         background: #222;
@@ -156,6 +165,8 @@ export default {
         height: 243px;
         width: 243px;
         background-size: cover;
+        background-color: darkgray;
+        border-radius: 8px;
     }
     .card1{
         padding: 30px 0;
@@ -167,7 +178,19 @@ export default {
     color: white
 }
 .stat_btn{
+    margin-top: 12px;
     padding-right: 2vh;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: #ffffff;
+    font-size: 18px;
+}
+.stat_btn:hover {
+    color: blanchedalmond;
 }
 .prt_grid{
     padding: 30px 0;
@@ -181,5 +204,11 @@ a {
 }
 a:hover {
     color: blanchedalmond;
+}
+.btn_del{
+    margin-top: 12px;
+    background-color: crimson;
+    color: #fff;
+    border-radius: 8px;
 }
 </style>

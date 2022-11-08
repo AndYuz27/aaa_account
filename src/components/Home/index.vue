@@ -1,8 +1,8 @@
 <template>
     <div class="mainpage">
         <h2>{{dd}}</h2>
-        <h5>{{tgaaa}}</h5>
-        <img src="https://www.pngall.com/wp-content/uploads/6/Vector-Joystick-PNG-File.png" alt="paintbrush" width="500">
+        <!-- <h5>telegram {{tgaaa}}</h5> -->
+        <img src="https://i.pinimg.com/originals/33/8b/2c/338b2cdae75f1835a5f9661f2b5c06c3.jpg" alt="Main Image" width="500">
         <div class="pg1">
             <h3>About Site</h3>
             <p>{{lrm}}</p> 
@@ -42,8 +42,7 @@ data() {
 'https://i.pinimg.com/originals/60/a1/ce/60a1ce7af01d06775077d5db0e2ceee0.gif',
 'https://picsum.photos/600/200',
 'https://picsum.photos/600/200'
-]
-
+],
         // cnt_l: [
         //     {type: "like", value: "15"},
         //     {type: "sub", value: "200"},

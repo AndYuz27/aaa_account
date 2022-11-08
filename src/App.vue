@@ -50,6 +50,12 @@
 <!--        </div>-->
         <ModalForm @modalClose="modalClose"  @updateData="updateUserData"/>
     </div>
+    <footer>
+<h3>2022 AndYuz27</h3>
+<nav>
+    <a href="https://github.com/AndYuz27/">GitHub</a>
+</nav>
+    </footer>
 </template>
 
 <script>
@@ -154,7 +160,18 @@ body{
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        background-color: aqua;
+        background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(79,245,0,1) 0%, rgba(40,101,229,1) 49%, rgba(0,212,255,1) 100%);
+    }
+    footer{
+        padding-left: 32pt;
+        padding-right: 32pt;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(79,245,0,1) 0%, rgba(40,101,229,1) 49%, rgba(0,212,255,1) 100%);
     }
     .login{
         background-color: azure;
@@ -165,6 +182,11 @@ body{
         border-radius: 8px;
 
 
+    }
+    a{
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
     }
 
 </style>
