@@ -37,7 +37,8 @@
                     </div>
                     </div>
                 </div>
-                <div v-if="!user" class="NoValidUser">Вы не вошли в систему. Пожалуйста      <router-link v-if="!user" to="/auth">войдите под вашим именем.</router-link>
+                <div v-if="!user" class="NoValidUser">Вы не вошли в систему. Пожалуйста
+                          <router-link v-if="!user" to="/auth">войдите под вашим именем.</router-link>
                 </div>
             </div>
         </div>

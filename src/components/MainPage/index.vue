@@ -21,13 +21,7 @@ export default {
     created() {
 
     },
-//     data: {
-//     images: [
-//       'http://via.placeholder.com/350x150',
-//       'http://via.placeholder.com/200x140',
-//       'http://via.placeholder.com/200x100'
-//     ],selectedImage: ''
-//   },
+
 //   created () {
 //     const idx = Math.floor(Math.random() * this.images.length)
 //     this.selectedImage = this.images[idx]
