@@ -53,7 +53,7 @@ export default {
                 email: this.authEmail,
                 password: this.authPwd
             }
-            const data = await fetch("https://dream-design-server.herokuapp.com/api/users/auth", {
+            const data = await fetch("https://srv.petiteweb.dev/api/profile/users/auth", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",
@@ -70,6 +70,7 @@ export default {
 
             } else {
                 alert(data.message);
+                alert("произошла ошибка с API, пожалуйста обратитесь к Лексе - surnacheva@ithub.ru")
             }
         },
         regUser: async function(e) {
@@ -81,7 +82,7 @@ export default {
                 password: this.regPwd
             }
             if (this.checkPwd) {
-                const data = await fetch("https://dream-design-server.herokuapp.com/api/users/add", {
+                const data = await fetch("https://srv.petiteweb.dev/api/profile/users/add", {
                     method: "post",
                     headers: {
                         "Content-Type": "application/json",
@@ -97,6 +98,7 @@ export default {
                     this.$forceUpdate();
                 } else {
                     alert(data.message);
+                alert("произошла ошибка с API, пожалуйста обратитесь к Лексе - surnacheva@ithub.ru")
                 }
                 // console.log(data);
             } else {

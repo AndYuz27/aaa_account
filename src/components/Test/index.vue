@@ -3,8 +3,9 @@
         <div class="container">
                     <div class="card" v-for="u of users" :key="u.email">
                         {{u.name || "NoName"}}      
-                              <hr>         
-                                 {{u.email}}       
+                              <br>
+                                 {{u.email}}  
+                                 <hr>             
                                  </div>
                                 </div>
                                 </template>
@@ -16,7 +17,7 @@
     },
     name: "test-data",
     created() {
-fetch("https://dream-design-server.herokuapp.com/api/users/")
+fetch("https://srv.petiteweb.dev/api/profile/users/")
             .then(res => res.json())
             .then(data => {
 
