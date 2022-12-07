@@ -37,7 +37,7 @@
        <nav>
     <router-link v-if="!user" to="/">Home</router-link>
     <router-link v-if="user" to="/profile"> Profile </router-link>   
-    <router-link v-if="user" to="/test">Users</router-link>
+    <router-link v-if="user" to="/users">Users</router-link>
     <router-link v-if="!user" to="/auth"> Auth </router-link>
     <button v-if="user" @click="logout">Log Out</button>
     </nav>

@@ -10,14 +10,16 @@ import Profile from "@/components/Profile";
 import Home from "@/components/Home";
 import Auth from "@/components/Auth";
 import Test from "@/components/Test";
+import PageOfUser from "@/components/PageOfUser"
 
 const routes = [
     {path: "/", component: Home},
-    {path: "/test", component: Test},
+    {path: "/users", component: Test},
     {path: "/profile", component: Profile},
     {path: "/auth", component: Auth, props: {type: "login"}},
     {path: "/signup", component: Auth, props: {type: "signup"}},
     {path: "/change-pwd", component: Auth, props: {type: "pwd"}},
+    {path: "/users/:id", component: PageOfUser, name: "userProfile"}
 ];
 
 const router = createRouter({
