@@ -1,13 +1,13 @@
 <template>
     <div>
-      <h1>test is here</h1>
+      <h1>Users is here</h1>
       <div class="container">
         <div class="card" v-for="u of users" :key="u.email">
 {{ u.name || "NoName" }}
-          <hr />
+          
           <p class="email">{{ u.email }}</p>
           <router-link class="designers__link" :to="{ name: 'userProfile', params: { id: u._id } }">Смотреть профиль</router-link>
-
+        <hr />
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
 
   <style scoped>
   * {
-    color: ghostwhite;
+    color: black;
     margin: 5px;
   }
   hr {

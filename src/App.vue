@@ -188,5 +188,14 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(79,245,0,1) 0%, rgba(
         color: black;
         font-size: 18px;
     }
+    button{
+
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        background-color: transparent;
+        border: none;
+    
+    }
 
 </style>

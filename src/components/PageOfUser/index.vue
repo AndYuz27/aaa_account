@@ -39,6 +39,10 @@ import Contacts from "@/components/Profile/Contacts";
 
 export default {
     name: "usr-foregn-profile",
+    components: {
+        "profile-picture": Picture,
+        "profile-contacts": Contacts
+    },
   data() {
     return {
       id: this.$route.params.id,
