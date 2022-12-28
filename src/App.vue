@@ -33,9 +33,9 @@
 -->
 <template>
     <header>
-        <h1>Design-Core</h1>
+        <router-link class="logo"  to="/"><h1>Design-Core</h1></router-link>
        <nav>
-    <router-link v-if="!user" to="/">Home</router-link>
+    <!-- <router-link  to="/">Home</router-link> -->
     <router-link v-if="user" to="/profile"> Profile </router-link>   
     <router-link v-if="user" to="/users">Users</router-link>
     <router-link v-if="!user" to="/auth"> Auth </router-link>
@@ -101,6 +101,7 @@
             logout(){
                 localStorage.removeItem("user");
                 localStorage.removeItem("name");
+                this.$forceUpdate();
 
                 this.$router.replace("/")
 
@@ -119,9 +120,7 @@ body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
 }
-    h1 {
-        color: red;
-    }
+    
 
     .cards {
         display: grid;
@@ -196,6 +195,13 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(79,245,0,1) 0%, rgba(
         background-color: transparent;
         border: none;
     
+    }
+    .logo{
+        color: red;
+        transition: 0.3s;
+    }
+    .logo:hover{
+        color: darkred;
     }
 
 </style>

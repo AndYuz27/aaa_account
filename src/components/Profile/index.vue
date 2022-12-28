@@ -4,7 +4,7 @@
             <profile-picture></profile-picture>
             <h2>{{userData.name || "Где имя!?"}}</h2>
             <div class="profile__item">
-                <a href="">{{userData.email || "Email отсутствует"}}</a>
+                <a href="">{{userData.email || "Email отсутствует (если это произошло после авторизации, обновите страницу)"}}</a>
 
             </div>
             <div class="stats">
@@ -15,24 +15,27 @@
             </div>
         </div>
         <div class="profile__about">    
-            <h2 v-if="user">{{userData.description || "Описании не найдено ((("}}</h2>
+            <h2 v-if="user">{{userData.description || "Графический Дизайнер"}}</h2>
+            <!-- <h3>Графический Дизайнер</h3> -->
             <div v-if="user">
 
             </div>
             <div class="portfolio">
                 <div class="ddff">
-                <div v-if="user" class="portfolio__btn" @click="addProject">Добавить</div>
+                <div v-if="user" class="portfolio__btn" @click="addProject" >Добавить в ваше портфолио</div>
                 <div class="prt_grid">
                 <div class="card1">
-                    <div class="profile__item" v-for="item of projects" :key="item._id">
+                    <div class="protfolio__item" v-for="item of projects" :key="item._id">
                     <h2>{{item.title || "Название отсутствует"}}</h2>
                     
                     <div class="portfolio__image" :style="{backgroundImage: `url(${item.main_image})`}"></div>
                     <button class="btn_del" @click="removeProject(item._id)">Удалить</button>
-                    <a :href="item.link" target="_blank" v-show="item.link">ссылка на АРТ</a>
+                    <div class="descr">
+                    <a :href="item.link" target="_blank" v-show="item.link" class="link_art">ссылка на АРТ</a>
                     <p>Описание: {{item.description || "Пользователь не оставил описания ((("}}</p>
                     <p>Дата: {{item.date || "Даты нету ((("}}</p>
                     <!-- <p>Likes: {{item.likes.length || "There is no likes"}}</p> -->
+                    </div>
                     </div>
                     </div>
                     </div>
@@ -127,21 +130,33 @@ export default {
     .profile {
         display: grid;
         grid-template-columns: 30% 1fr;
-        width: 1200px;
-    }
+        width: 900px;
+        }
     .profile__contacts {
         background: #222;
         color: #fff;
         padding: 30px;
     }
     .profile__about {
-        border: #222 solid 1px;
+        /* border: #222 solid 1px; */
+        background-color: whitesmoke;
         padding: 30px;
     }
     .profile__item {
         display: flex;
         flex-direction: column;
         margin-right: 5px;
+    }
+    .protfolio__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 2px 3px 5px grey;
+        border-radius: 8px;
+
     }
     .portfolio {
         padding: 30px 0;
@@ -154,14 +169,24 @@ export default {
         
     }
     .portfolio__btn {
-        border: 1px solid;
+        width: 30%;
+        /* border: 1px solid; */
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         border-radius: 10px;
         padding: 10px;
+        background-color: yellow;
+        transition: 0.5s;
+        font-weight: 550;
+        box-shadow: 2px 3px 5px grey;
+
     }
+    .portfolio__btn:hover {
+        background-color: darkgoldenrod;
+    }
+
     .portfolio__image{
         height: 243px;
         width: 243px;
@@ -199,17 +224,34 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
+
+
+.btn_del{
+    margin: 12px;
+    background-color: crimson;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn_del:hover{
+    background-color:  darkred;
+}
+.btn_del:active{
+    background-color:  black;
+}
 a {
     color: #ffffff;
     text-decoration: none;
 }
-a:hover {
-    color: blanchedalmond;
+
+.link_art{
+    /* margin: 10px; */
+    color: #00a8;
+    text-decoration: none;
+    transition: 0.5s;
 }
-.btn_del{
-    margin-top: 12px;
-    background-color: crimson;
-    color: #fff;
-    border-radius: 8px;
+.link_art:hover {
+    color: #3f3f3f;
 }
 </style>

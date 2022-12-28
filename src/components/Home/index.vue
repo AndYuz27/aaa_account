@@ -60,7 +60,7 @@ body{
 .mainpage{
 display: flex;
 flex-direction: column;
-background-color: rgb(255, 255, 0);
+background-color: whitesmoke;
 align-items: center;
 }
 .bg_loop{

@@ -13,8 +13,10 @@ export default {
 
 <style>
     .wrapper {
-        background-color: mediumspringgreen;
+        background-color: lightskyblue;
         padding: 0px calc(50% - 600px);
+        display: flex;
+        align-items: center;
         min-height: calc(100vh - 100px);
         box-sizing: border-box;
     }

@@ -1,24 +1,27 @@
 <template>
-    <div v-if="type === 'login'">
-        <h3>Войти</h3>
+    <div class="cont-auth">
+    <div class="auth" v-if="type === 'login'">
+        <h3 style="margin-top: 0; padding: 15px;">Войти</h3>
         <form @submit="authUser">
             <input type="email" placeholder="Ваш электронный адрес" required name="email" v-model="authEmail">
+            <br>
             <input type="password" placeholder="Ваш пароль" required name="password" v-model="authPwd">
-            <button type="submit">Войти</button>
+            <br>
+            <button class="btn_auth" type="submit">Войти</button>
         </form>
         <hr>
         <router-link to="/signup">Зарегистрироваться</router-link>
         <hr>
         <router-link to="/change-pwd">Восстановить пароль</router-link>
     </div>
-    <div v-else-if="type === 'signup'">
+    <div class="auth" v-else-if="type === 'signup'">
         <h3>Зарегистрироваться</h3>
         <form @submit="regUser">
             <input type="text" placeholder="Ваше имя" name="name" v-model="regName">
             <input type="email" placeholder="Ваш электронный адрес" required name="email" v-model="regEmail">
             <input type="password" placeholder="Ваш пароль" required name="password" v-model="regPwd">
             <input type="password" placeholder="Повторите пароль" required v-model="repeatPwd" :class="repeatPwd !== '' && !checkPwd ? 'wrong' : 'success'" @input="check">
-            <button type="submit">Зарегистрироваться</button>
+            <button class="btn_auth" type="submit">Зарегистрироваться</button>
         </form>
         <hr>
         <router-link to="/auth">Войти</router-link>
@@ -28,6 +31,7 @@
         ...
         <hr>
         <router-link to="/auth">На страницу входа</router-link>
+    </div>
     </div>
 </template>
 
@@ -92,10 +96,11 @@ export default {
                 }).then(res => res.json());
                 if (data.message === "ok") {
                     e.target.reset();
-                    localStorage.setItem("user", JSON.stringify(data.data));
-                    
-                    this.$router.replace("/profile");
                     this.$forceUpdate();
+                    localStorage.setItem("user", JSON.stringify(data.data));
+                    window.location.reload("/profile")
+
+                    // this.$router.replace("/profile");
                 } else {
                     alert(data.message);
                 alert("произошла ошибка с API, пожалуйста обратитесь к Лексе - surnacheva@ithub.ru")
@@ -119,4 +124,58 @@ export default {
     .success {
         border-color: green;
     }
+    input{
+        width: 250px;
+        height: 32px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        font-size: 14pt;
+        transition: 0.5s;
+    }
+    input:hover{
+        box-shadow: 2px 3px 5px #000;
+
+    }
+    input[value]{
+        font-size: 14pt;
+    }
+    .auth{
+        width: 350px;
+        height: 100%;
+        padding: 25px;
+        background-color: lightgray;
+        border-radius: 15px;
+        box-shadow: 2px 3px 5px #000;
+    }
+    a{
+        cursor: pointer;
+    }
+    button{
+        cursor: pointer;
+    }
+    .btn_auth{
+        padding: 5px 15px 5px 15px;
+        border-radius: 8px;
+        background-color: lime;
+        box-shadow: 2px 3px 5px #000;
+        margin: 5px;
+        transition: 0.5s;
+
+    }
+    .btn_auth:hover{
+        box-shadow: 2px 3px 5px #00a;
+        background-color: lightgreen;
+
+    }
+    .btn_auth:active{
+        box-shadow: 2px 3px 5px #00a;
+        background-color: green;
+    }
+    .cont-auth{
+        padding-top: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 </style>
